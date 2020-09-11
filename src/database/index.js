@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb://localhost:27017/shipioApi", {
+const connectString = MONGO_URL || "mongodb://localhost:27017/shipioApi";
+
+mongoose.connect(connectString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
