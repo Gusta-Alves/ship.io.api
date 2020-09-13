@@ -7,19 +7,19 @@ module.exports = {
     async getUser(req, res) {
         const users = await User.find();
 
-        return res.json(users);
+        return JSON.stringify({users: users});
     },
 
     async getUserByID(req, res) {
         const user = await User.findById(req.params.id);
 
-        return res.json(user);
+        return JSON.stringify({user: user});
     },
 
     async getUserByIdGoogle(req, res) {
         const user = await User.findOne({ id_google: req.params.idGoogle });
 
-        return res.json(user);
+        return JSON.stringify({user: user});
     },
 
     async createUser(req, res) {
