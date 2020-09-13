@@ -26,7 +26,7 @@ module.exports = {
 
     async getUserByIdGoogle(req, res) {
         try{
-            if(req.body){
+            if(req.body.id_google){
                 const user = await User.findOne({ id_google: req.params.idGoogle });
 
                 return res.json(user);
@@ -51,7 +51,7 @@ module.exports = {
 
     async updateUser(req, res) {
         try{
-            if(req.body){
+            if(req.body.id_google){
             const user = await User.findOneAndUpdate({id_google: req.params.idGoogle}, req.body, { new: true });
 
             res.end(JSON.stringify({user: user}));
