@@ -40,6 +40,16 @@ const UserSchema = new mongoose.Schema({
         required: true,
         default: [0],
     },
+    barco_atual:{
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    rede_atual:{
+        type: Number,
+        required: true,
+        default: 0,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
