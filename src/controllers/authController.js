@@ -26,11 +26,16 @@ module.exports = {
 
     async getUserByIdGoogle(req, res) {
         try{
-            const user = await User.findOne({ id_google: req.params.idGoogle });
+            if(req.body){
+                const user = await User.findOne({ id_google: req.params.idGoogle });
 
-            return res.json(user);
+                return res.json(user);
+            }
+            else{
+                return res.status(400).send({ error: 'Usuário não encontrado' });
+            }
         } catch(err){
-            return res.status(400).send({ error: 'Usuário não encontrado' });
+            return res.status(400).send({ error: 'Erro ao buscar usuário' });
         }
         
     },
@@ -46,9 +51,14 @@ module.exports = {
 
     async updateUser(req, res) {
         try{
+            if(req.body){
             const user = await User.findOneAndUpdate({id_google: req.params.idGoogle}, req.body, { new: true });
 
             res.end(JSON.stringify({user: user}));
+            }
+            else{
+                return res.status(400).send({ error: 'Erro ao atualizar usuário' });
+            }
         } catch(err){
             return res.status(400).send({ error: 'Erro ao atualizar usuário' });
         }
