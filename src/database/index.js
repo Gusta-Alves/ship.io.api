@@ -4,8 +4,8 @@ mongoose.Promise = global.Promise;
 
 
 
-mongoose.connect("mongodb://localhost:27017/shipioApi", {
-// mongoose.connect(process.env.MONGO_URL, {
+// mongoose.connect("mongodb://localhost:27017/shipioApi", {
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
