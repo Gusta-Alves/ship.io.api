@@ -26,9 +26,8 @@ module.exports = {
 
     async getUserByIdGoogle(req, res) {
         try{
-            if(req.body.id_google){
-                const user = await User.findOne({ id_google: req.params.idGoogle });
-
+            const user = await User.findOne({ id_google: req.params.idGoogle });
+            if(user){
                 return res.json(user);
             }
             else{
@@ -51,10 +50,10 @@ module.exports = {
 
     async updateUser(req, res) {
         try{
-            if(req.body.id_google){
             const user = await User.findOneAndUpdate({id_google: req.params.idGoogle}, req.body, { new: true });
 
-            res.end(JSON.stringify({user: user}));
+            if(user){
+                res.end(JSON.stringify({user: user}));
             }
             else{
                 return res.status(400).send({ error: 'Erro ao atualizar usuário' });
