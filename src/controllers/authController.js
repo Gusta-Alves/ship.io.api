@@ -7,25 +7,25 @@ module.exports = {
     async getUser(req, res) {
         const users = await User.find();
 
-        return res.json(users);
+        res.end(JSON.stringify({users: users}));
     },
 
     async getUserByID(req, res) {
         const user = await User.findById(req.params.id);
 
-        return res.json(user);
+        res.end(JSON.stringify({user: user}));
     },
 
     async getUserByIdGoogle(req, res) {
         const user = await User.findOne({ id_google: req.params.idGoogle });
 
-        return res.json(user);
+        res.end(JSON.stringify({user: user}));
     },
 
     async createUser(req, res) {
         try{
             const user = await User.create(req.body);
-            return res.send({ user });
+            res.end(JSON.stringify({user: user}));
         } catch(err){
             return res.status(400).send({ error: 'Falha no registro' });
         }
@@ -34,7 +34,7 @@ module.exports = {
     async updateUser(req, res) {
         const user = await User.findOneAndUpdate({id_google: req.params.idGoogle}, req.body, { new: true });
 
-        return res.send({ user });
+        res.end(JSON.stringify({user: user}));
     },
 
     async destroy(req, res) {
