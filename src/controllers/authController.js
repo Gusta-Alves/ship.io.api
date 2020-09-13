@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { update } = require('../models/user');
 
 const User = mongoose.model('User');
 
@@ -6,19 +7,19 @@ module.exports = {
     async getUser(req, res) {
         const users = await User.find();
 
-        return JSON.stringify({users: users});
+        return res.json(users);
     },
 
     async getUserByID(req, res) {
         const user = await User.findById(req.params.id);
 
-        return JSON.stringify({user: user});
+        return res.json(user);
     },
 
     async getUserByIdGoogle(req, res) {
         const user = await User.findOne({ id_google: req.params.idGoogle });
 
-        return JSON.stringify({user: user});
+        return res.json(user);
     },
 
     async createUser(req, res) {
