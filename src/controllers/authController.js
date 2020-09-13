@@ -13,13 +13,13 @@ module.exports = {
     async getUserByID(req, res) {
         const user = await User.findById(req.params.id);
 
-        res.end(JSON.stringify({user: user}));
+        return res.json(user);
     },
 
     async getUserByIdGoogle(req, res) {
         const user = await User.findOne({ id_google: req.params.idGoogle });
 
-        res.end(JSON.stringify({user: user}));
+        return res.json(user);
     },
 
     async createUser(req, res) {
