@@ -43,12 +43,12 @@ const UserSchema = new mongoose.Schema({
     barco_atual:{
         type: Number,
         required: true,
-        default: 0,
+        default: 11,
     },
     rede_atual:{
         type: Number,
         required: true,
-        default: 0,
+        default: 22,
     },
     createdAt: {
         type: Date,
