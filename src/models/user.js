@@ -13,26 +13,32 @@ const UserSchema = new mongoose.Schema({
     shipcoin: {
         type: Number,
         required: true,
+        default: 150,
     },
     shipcash: {
         type: Number,
         required: true,
+        default: 150,
     },
     barcos_cash: {
         type: [Number],
         required: true,
+        default: [],
     },
     barcos_coin: {
         type: [Number],
         required: true,
+        default: [0],
     },
     redes_cash: {
         type: [Number],
         required: true,
+        default: [],
     },
     redes_coin: {
         type: [Number],
         required: true,
+        default: [0],
     },
     createdAt: {
         type: Date,
