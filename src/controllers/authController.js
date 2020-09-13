@@ -5,21 +5,34 @@ const User = mongoose.model('User');
 
 module.exports = {
     async getUser(req, res) {
-        const users = await User.find();
+        try{
+            const users = await User.find();
 
-        res.end(JSON.stringify({users: users}));
+            res.end(JSON.stringify({users: users}));
+        } catch(err){
+            return res.status(400).send({ error: 'Erro ao procurar usuários' });
+        }
     },
 
     async getUserByID(req, res) {
-        const user = await User.findById(req.params.id);
+        try{
+            const user = await User.findById(req.params.id);
 
-        return res.json(user);
+            return res.json(user);
+        } catch(err){
+            return res.status(400).send({ error: 'Usuário não encontrado' });
+        }
     },
 
     async getUserByIdGoogle(req, res) {
-        const user = await User.findOne({ id_google: req.params.idGoogle });
+        try{
+            const user = await User.findOne({ id_google: req.params.idGoogle });
 
-        return res.json(user);
+            return res.json(user);
+        } catch(err){
+            return res.status(400).send({ error: 'Usuário não encontrado' });
+        }
+        
     },
 
     async createUser(req, res) {
@@ -32,14 +45,24 @@ module.exports = {
     },
 
     async updateUser(req, res) {
-        const user = await User.findOneAndUpdate({id_google: req.params.idGoogle}, req.body, { new: true });
+        try{
+            const user = await User.findOneAndUpdate({id_google: req.params.idGoogle}, req.body, { new: true });
 
-        res.end(JSON.stringify({user: user}));
+            res.end(JSON.stringify({user: user}));
+        } catch(err){
+            return res.status(400).send({ error: 'Erro ao atualizar usuário' });
+        }
+        
     },
 
     async destroy(req, res) {
-        const user = await User.findByIdAndRemove(req.params.id);
+        try{
+            const user = await User.findByIdAndRemove(req.params.id);
 
-        return res.send('Usuário removido com sucesso');
+            return res.send('Usuário removido com sucesso');
+        } catch(err){
+            return res.status(400).send({ error: 'Erro ao remover usuário' });
+        }
+        
     }
 }
