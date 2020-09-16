@@ -51,7 +51,6 @@ module.exports = {
     async updateUser(req, res) {
         try{
             const user = await User.findOneAndUpdate({id_google: req.params.idGoogle}, req.body, { new: true });
-
             if(user){
                 res.end(JSON.stringify({user: user}));
             }
@@ -62,6 +61,90 @@ module.exports = {
             return res.status(400).send({ error: 'Erro ao atualizar usuário' });
         }
         
+    },
+
+    async updateBarcoCash(req, res) {
+        try{
+
+            if(req.body.barcos_cash == null || req.body.shipcash == null){
+                return res.status(400).send({ error: 'Erro ao adicionar skin' });
+            }
+
+            const user = await User.findOneAndUpdate({ id_google: req.params.idGoogle}, { $push: { barcos_cash: req.body.barcos_cash }, $set: { shipcash: req.body.shipcash }}, { new: true });
+
+            if(user){
+                res.end(JSON.stringify({user: user}));
+            }
+            else{
+                return res.status(400).send({ error: 'Erro ao adicionar skin' });
+            }
+
+        } catch(err){
+            return res.status(400).send({ error: 'Erro ao adicionar skin' });
+        }
+    },
+
+    async updateBarcoCoin(req, res) {
+        try{
+
+            if(req.body.barcos_coin == null || req.body.shipcoin == null){
+                return res.status(400).send({ error: 'Erro ao adicionar skin' });
+            }
+
+            const user = await User.findOneAndUpdate({ id_google: req.params.idGoogle}, { $push: { barcos_coin: req.body.barcos_coin }, $set: { shipcoin: req.body.shipcoin }}, { new: true });
+
+            if(user){
+                res.end(JSON.stringify({user: user}));
+            }
+            else{
+                return res.status(400).send({ error: 'Erro ao adicionar skin' });
+            }
+
+        } catch(err){
+            return res.status(400).send({ error: 'Erro ao adicionar skin' });
+        }
+    },
+
+    async updateRedeCash(req, res) {
+        try{
+
+            if(req.body.redes_cash == null || req.body.shipcash == null){
+                return res.status(400).send({ error: 'Erro ao adicionar skin' });
+            }
+
+            const user = await User.findOneAndUpdate({ id_google: req.params.idGoogle}, { $push: { redes_cash: req.body.redes_cash }, $set: { shipcash: req.body.shipcash }}, { new: true });
+
+            if(user){
+                res.end(JSON.stringify({user: user}));
+            }
+            else{
+                return res.status(400).send({ error: 'Erro ao adicionar skin' });
+            }
+
+        } catch(err){
+            return res.status(400).send({ error: 'Erro ao adicionar skin' });
+        }
+    },
+
+    async updateRedeCoin(req, res) {
+        try{
+
+            if(req.body.redes_coin == null || req.body.shipcoin == null){
+                return res.status(400).send({ error: 'Erro ao adicionar skin' });
+            }
+
+            const user = await User.findOneAndUpdate({ id_google: req.params.idGoogle}, { $push: { redes_coin: req.body.redes_coin }, $set: { shipcoin: req.body.shipcoin }}, { new: true });
+
+            if(user){
+                res.end(JSON.stringify({user: user}));
+            }
+            else{
+                return res.status(400).send({ error: 'Erro ao adicionar skin' });
+            }
+
+        } catch(err){
+            return res.status(400).send({ error: 'Erro ao adicionar skin' });
+        }
     },
 
     async destroy(req, res) {
