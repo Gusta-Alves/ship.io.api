@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema({
     barcos_coin: {
         type: [Number],
         required: true,
-        default: [11],
+        default: [0],
     },
     redes_cash: {
         type: [Number],
@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
     redes_coin: {
         type: [Number],
         required: true,
-        default: [22],
+        default: [0],
     },
     barco_atual:{
         type: Number,
